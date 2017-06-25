@@ -1,0 +1,25 @@
+<!--<android.support.v7.widget.GridLayout android:layout_width="fill_parent"
+                                      android:layout_height="fill_parent"
+                                      xmlns:tools="http://schemas.android.com/tools"
+                                      app:orientation="horizontal"
+                                      app:columnCount="8"
+                                      app:rowCount="8"
+                                      android:id="@+id/gridLayout"
+                                      tools:context="com.iomil.mediatiles.GridLayoutFragment"
+                                      xmlns:app="http://schemas.android.com/apk/res-auto"
+                                      xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+</android.support.v7.widget.GridLayout>-->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.iomil.mediatiles.GridLayoutFragment">
+
+
+</RelativeLayout>
