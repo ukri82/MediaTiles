@@ -1,24 +1,20 @@
 package com.iomil.mediatiles;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayout;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
+import com.android.volley.toolbox.NetworkImageView;
+import com.iomil.mediatiles.content_builders.ConcreteBuilderFactory;
+import com.iomil.mediatiles.content_builders.TextContentBuilder;
 import com.iomil.mediatiles.model.Tile;
+import com.iomil.mediatiles.content_infra.TileView;
 
 import java.util.ArrayList;
 
@@ -52,11 +48,10 @@ public class GridLayoutFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-
-        mTileList.add(new Tile(0.05f, 0.1f, 0.6f, 0.4f, 0, "Tile 1"));
-        mTileList.add(new Tile(0.75f, 0.1f, 0.20f, 0.45f, 0, "Tile 2"));
-        mTileList.add(new Tile(0.0f, 0.5f, 0.4f, 0.4f, 0, "Tile 3"));
-        mTileList.add(new Tile(0.52f, 0.6f, 0.4f, 0.35f, 0, "Tile 4"));
+        mTileList.add(new Tile(0.05f, 0.05f, 0.45f, 0.45f, Tile.Type.Text, "Tile 1"));
+        mTileList.add(new Tile(0.55f, 0.05f, 0.45f, 0.45f, Tile.Type.Text, "Tile 2"));
+        mTileList.add(new Tile(0.05f, 0.52f, 0.45f, 0.40f, Tile.Type.Text, "Tile 3"));
+        mTileList.add(new Tile(0.55f, 0.52f, 0.45f, 0.40f, Tile.Type.Image, "https://yt3.ggpht.com/-tUnSh4hL1b0/AAAAAAAAAAI/AAAAAAAAAAA/AIy5-05CyFk/s100-c-k-no-mo-rj-c0xffffff/photo.jpg"));
 
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
@@ -78,59 +73,16 @@ public class GridLayoutFragment extends Fragment
     {
         RelativeLayout parentLayout = (RelativeLayout) getView();
 
-        int width = getView().getWidth();
-        int height = getView().getHeight();
-
         mIsManual = true;
 
         for(Tile tile : mTileList)
         {
-            LinearLayout LL = new LinearLayout(getActivity());
-            LL.setBackgroundColor(Color.RED);
-            LL.setOrientation(LinearLayout.VERTICAL);
+            TileView tileView = new TileView(tile);
 
-            int layoutHeight = (int)(height * tile.mHeight);
-            int layoutWidth = (int)(width * tile.mWidth);
-            LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(layoutWidth, layoutHeight);
-            LL.setX(width * tile.mX);
-            LL.setY(height * tile.mY);
+            tileView.linkFactory(new ConcreteBuilderFactory());
+            ViewGroup tileViewGroup = tileView.createView(getView());
 
-            LL.setLayoutParams(LLParams);
-
-            TextView text = new TextView(getContext());
-            text.setText(tile.mData);
-            text.setGravity(Gravity.CENTER);
-            LL.addView(text);
-
-            parentLayout.addView(LL);
+            parentLayout.addView(tileViewGroup);
         }
-
-
-
-    }
-    void doLayout1()
-    {
-        GridLayout gridLayout = (GridLayout) getView();
-        int width = getView().getWidth();
-        int height = getView().getHeight();
-        gridLayout.setRowCount(height);
-        gridLayout.setColumnCount(width);
-
-        LinearLayout LL = new LinearLayout(getActivity());
-        LL.setBackgroundColor(Color.CYAN);
-        LL.setOrientation(LinearLayout.VERTICAL);
-
-        int layoutHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
-        int layoutWidth = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 120, getResources().getDisplayMetrics());
-        LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(layoutWidth, layoutHeight);
-        LL.setLayoutParams(LLParams);
-
-
-        GridLayout.Spec rowSpan = GridLayout.spec(GridLayout.UNDEFINED, 200);
-        GridLayout.Spec colspan = GridLayout.spec(GridLayout.UNDEFINED, 200);
-
-        GridLayout.LayoutParams gridParam = new GridLayout.LayoutParams(rowSpan, colspan);
-
-        gridLayout.addView(LL);
     }
 }

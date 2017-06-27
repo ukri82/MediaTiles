@@ -11,10 +11,12 @@ public class Tile
     public float mWidth;
     public float mHeight;
 
-    public int mType;
+    public Type mType;
     public String mData;
 
-    public Tile(float x, float y, float width, float height, int type, String data)
+    public enum Type {Text, Image, Video};
+
+    public Tile(float x, float y, float width, float height, Type type, String data)
     {
         mX = x;
         mY = y;
