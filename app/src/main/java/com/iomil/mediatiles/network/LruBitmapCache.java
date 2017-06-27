@@ -1,4 +1,4 @@
-package com.iomil.mediatiles;
+package com.iomil.mediatiles.network;
 
 import android.graphics.Bitmap;
 import android.support.v4.util.LruCache;

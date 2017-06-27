@@ -1,4 +1,4 @@
-package com.iomil.mediatiles;
+package com.iomil.mediatiles.network;
 
 import android.app.Application;
 import android.text.TextUtils;

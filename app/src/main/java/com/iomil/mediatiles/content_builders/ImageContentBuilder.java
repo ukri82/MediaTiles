@@ -1,17 +1,10 @@
 package com.iomil.mediatiles.content_builders;
 
-import android.app.ActionBar;
-import android.view.Gravity;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
-import com.iomil.mediatiles.ImgController;
-import com.iomil.mediatiles.LruBitmapCache;
+import com.iomil.mediatiles.network.ImgController;
 import com.iomil.mediatiles.R;
 import com.iomil.mediatiles.content_infra.TileContentBuilder;
 import com.iomil.mediatiles.model.Tile;

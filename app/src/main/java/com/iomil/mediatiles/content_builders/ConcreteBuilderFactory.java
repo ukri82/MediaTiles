@@ -23,6 +23,7 @@ public class ConcreteBuilderFactory implements ContentBuilderFactory
                 builder = new ImageContentBuilder();
                 break;
             case Video:
+                builder = new VideoContentBuilder();
                 break;
         }
         return builder;

@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.android.volley.toolbox.NetworkImageView;
 import com.iomil.mediatiles.content_builders.ConcreteBuilderFactory;
 import com.iomil.mediatiles.content_builders.TextContentBuilder;
+import com.iomil.mediatiles.content_infra.ContentBuilderFactory;
 import com.iomil.mediatiles.model.Tile;
 import com.iomil.mediatiles.content_infra.TileView;
 
@@ -50,7 +51,7 @@ public class GridLayoutFragment extends Fragment
 
         mTileList.add(new Tile(0.05f, 0.05f, 0.45f, 0.45f, Tile.Type.Text, "Tile 1"));
         mTileList.add(new Tile(0.55f, 0.05f, 0.45f, 0.45f, Tile.Type.Text, "Tile 2"));
-        mTileList.add(new Tile(0.05f, 0.52f, 0.45f, 0.40f, Tile.Type.Text, "Tile 3"));
+        mTileList.add(new Tile(0.05f, 0.52f, 0.45f, 0.40f, Tile.Type.Video, "https://archive.org/download/ksnn_compilation_master_the_internet/ksnn_compilation_master_the_internet_512kb.mp4"));
         mTileList.add(new Tile(0.55f, 0.52f, 0.45f, 0.40f, Tile.Type.Image, "https://yt3.ggpht.com/-tUnSh4hL1b0/AAAAAAAAAAI/AAAAAAAAAAA/AIy5-05CyFk/s100-c-k-no-mo-rj-c0xffffff/photo.jpg"));
 
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -74,12 +75,12 @@ public class GridLayoutFragment extends Fragment
         RelativeLayout parentLayout = (RelativeLayout) getView();
 
         mIsManual = true;
+        ContentBuilderFactory factory = new ConcreteBuilderFactory();
 
         for(Tile tile : mTileList)
         {
-            TileView tileView = new TileView(tile);
+            TileView tileView = new TileView(tile, factory);
 
-            tileView.linkFactory(new ConcreteBuilderFactory());
             ViewGroup tileViewGroup = tileView.createView(getView());
 
             parentLayout.addView(tileViewGroup);

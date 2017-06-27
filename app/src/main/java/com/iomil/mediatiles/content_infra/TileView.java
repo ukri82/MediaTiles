@@ -16,13 +16,9 @@ public class TileView
     Tile mTile;
     ContentBuilderFactory mFactory;
 
-    public TileView(Tile tile)
+    public TileView(Tile tile, ContentBuilderFactory factory)
     {
         mTile = tile;
-    }
-
-    public void linkFactory(ContentBuilderFactory factory)
-    {
         mFactory = factory;
     }
 
